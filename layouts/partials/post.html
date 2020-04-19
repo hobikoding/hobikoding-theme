@@ -1,4 +1,35 @@
-<div class="post">
+<div class="post-header">
+  <div class="mb-3">
+    <img src="https://res.cloudinary.com/hobikoding/image/upload/v1552640822/author-icon.png" alt="author"
+      class="rounded-circle mr-1" width="32" height="32" alt="author" />
+    <a class="align-middle text-dark" href="{{ .Site.Author.web }}" target="_blank">{{ .Site.Author.name }}</a>
+    <small class="align-middle text-muted">· update terakhir <time>{{ .Date.Format "02 Jan 2006" }}</time></small>
+  </div>
+  <h1 class="card-title mb-3">
+    {{.Title}}
+  </h1>
+  <hr>
+</div>
+<div>
+  {{with .Params.topic}}
+  {{range .}}
+  <span class="badge badge-success">
+    #
+    <a href="{{$.Site.BaseURL}}/topic/{{.|urlize}}" class="text-white">{{.}}</a>
+  </span>
+  {{end}}
+  {{end}}
+</div>
+<section class="post-content my-5">
+  {{if .Params.thumbnail}}
+  <img src="{{with .Params.thumbnail}}{{.}}{{end}}" alt="{{with .Params.Title}}{{.}}{{end}}" class="mb-3 w-100">
+  {{end}}
+
+  {{.Content}}
+</section>
+
+
+<!-- <div class="post">
   <div class="post-title">
     <a href="{{ .Permalink }}">
       <img src="{{ "/images/post-title-icon.png" | relURL }}" />
@@ -15,27 +46,19 @@
   <section class="post-content">
     {{ .Content }}
   </section>
-  <div class="share">    
-    <a
-      href="//www.facebook.com/sharer.php?src=bm&u={{ .Permalink }}&t={{ .Title }}"
-      onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"
-      ><i class="fa fa-facebook"></i
-    ></a>
-    <a
-      href="//twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title }}&tw_p=tweetbutton"
-      onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"
-      ><i class="fa fa-twitter"></i
-    ></a>
-    <a
-      href="//getpocket.com/edit?url={{ .Permalink }}&title={{ .Title }}"
-      onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"
-      ><i class="fa fa-get-pocket"></i
-    ></a>
-    <a
-      href="//plus.google.com/share?url={{ .Permalink }}"
-      onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"
-      ><i class="fa fa-google-plus"></i
-    ></a>
+  <div class="share">
+    <a href="//www.facebook.com/sharer.php?src=bm&u={{ .Permalink }}&t={{ .Title }}"
+      onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+        class="fa fa-facebook"></i></a>
+    <a href="//twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title }}&tw_p=tweetbutton"
+      onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+        class="fa fa-twitter"></i></a>
+    <a href="//getpocket.com/edit?url={{ .Permalink }}&title={{ .Title }}"
+      onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+        class="fa fa-get-pocket"></i></a>
+    <a href="//plus.google.com/share?url={{ .Permalink }}"
+      onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+        class="fa fa-google-plus"></i></a>
   </div>
   <div class="post-meta-code">
     <div class="desc">
@@ -46,7 +69,7 @@
       <a href="mailto:{{ .Site.Author.email }}">{{ .Site.Author.name }}</a>
       {{ end }}
       {{ i18n "postAuthorPostfix" }}
-      <span class="highlight">{{ i18n "postDatetime" .Date }}</span> 
+      <span class="highlight">{{ i18n "postDatetime" .Date }}</span>
       {{ i18n "postDatetimePostfix" }}
     </div>
     <div class="desc">
@@ -68,10 +91,10 @@
         {{ end }}
       </div>
     </div>
-  </div>  
+  </div>
   {{ if not .Site.BuildDrafts }}
-  <div class="post-comment">    
-    {{ template "_internal/disqus.html" . }}    
+  <div class="post-comment">
+    {{ template "_internal/disqus.html" . }}
   </div>
   {{ end }}
   <div class="recommend-articles">
@@ -93,4 +116,4 @@
       {{ end }}
     </ul>
   </div>
-</div>
+</div> -->

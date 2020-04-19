@@ -2,9 +2,29 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
+.post-content h1, 
+.post-content h2,
+.post-content h3, 
+.post-content h4, 
+.post-content h5, 
+.post-content h6{
+  font-family: "PT Sans",Roboto,sans-serif;
+  font-weight: 700;
+  letter-spacing: .01rem;
+  margin-top: 2rem;
+}
+
 @media (min-width: 992px){
   .justify-content-center {
     justify-content: flex-start!important;
+  }
+
+  /* share */
+  .share-btn{
+    display: block;
+  }
+  .share-page-link a{
+    margin-left: 1.5rem!important;
   }
 }
 
@@ -12,24 +32,11 @@
   background:#1c2948!important
 }
 
-.navbar {
-  /* width: 100%; */
-  background: #204d7b;
-  /* height: fit-content; */
-}
-
-.navbar ul {
-  list-style-type: none;
-}
-
-.navbar li a {
-  color: #FFFFFF;
-  text-decoration: none;
-}
-
-.navbar li a:hover {
-  color: #00B2A0;
-}
+/* navbar */
+.navbar {background: #204d7b;}
+.navbar ul {list-style-type: none;}
+.navbar li a {color: #FFFFFF;text-decoration: none;}
+.navbar li a:hover {color: #00B2A0;}
 
 .post-home .card-title {
   font-family: "PT Sans", Roboto, sans-serif;
@@ -40,3 +47,64 @@
 .home-pagination {
   margin: 10px 0px 20px 15px;
 }
+
+/* single */
+h1.card-title {
+  margin-top: 10;
+  font-family: "PT Sans",Roboto,sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: .01rem;  
+}
+
+/* highlight */
+pre{
+  background-color: #fff!important;
+  color: #212529!important;
+}
+.hljs{
+  padding: 1.5em!important;
+  border: none;
+  float: left;
+  min-width: 100%;
+  background: #2a4e650f!important;
+}
+
+.hljs-comment, .hljs-quote {
+  color: #818a90!important;
+}
+
+/* share */
+.share a {
+  display: inline-block;
+}
+.share-btn{
+  opacity: 0.7;
+  transition: all 0.3s;
+  height: 23px;
+  max-width: none;
+}
+.share-btn.down{
+  display: block!important;
+}
+.share-btn:hover{
+  opacity: 1.0;
+  cursor: pointer;
+}
+.github-post{
+  opacity: 0.7;
+  height: 45px;
+  transition: all 0.3s;
+}
+.github-post:hover{
+  opacity: 1;
+}
+#share-button{
+  display: none;
+}
+
+/* blockquote */
+blockquote{padding: 10px 15px;border-left: 7px solid #556f7f;background: #eff9ff;margin-top: 1rem;margin-bottom: 1.5rem;}
+
+/* block code */
+.block-code{background: #d9e0e4;display: inline-block;margin-right: -1.5em;margin-left: -1.5em;padding: 0 1.5em;width: -webkit-fill-available;width: -moz-available;width: fill-available;}
