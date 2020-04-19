@@ -1,24 +1,13 @@
-<div class="post">
-  <div class="post-title">
-    <a href="{{ .Permalink }}" title="{{ .Title }}">
-      <img src="{{ "/images/post-title-icon.png" | relURL }}" />
-      <div class="post-meta">
-        <time>{{ i18n "postDatetime" .Date }}</time>
-        <h1>{{ .Title }}</h1>
-      </div>
-    </a>
-  </div>
-  {{ if .Params.cover }}
-  <div class="cover-image">
-    <a href="{{ .Permalink }}" title="{{ .Title }}">
-      <img src="{{ .Params.cover }}" />
-    </a>
-  </div>
-  {{ end }}
-  <div>
-    {{ .Summary }}
-    {{ if .Truncated }}
-    <a href="{{ .RelPermalink }}" class="summary-more">{{ i18n "postReadMore" }}</a>
-    {{ end }}
+<div class="col-md-6 col-lg-4 mb-4 d-flex">
+  <div class="card post-home">
+    <img src="{{ with .Params.thumbnail }}{{ . }}{{ end }}" alt="{{with .Params.title }} {{ . }}{{ end }}"
+      class="card-img-top" />
+    <div class="card-body">
+      <h5 class="card-title">
+        <a class="text-dark" href="{{ .Permalink }}" title="{{ .Title }}">
+          {{ .Title }}
+        </a>
+      </h5>
+    </div>
   </div>
 </div>

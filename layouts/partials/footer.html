@@ -1,12 +1,36 @@
-<div class="go-top">
-  <a href="#" class="go-top-button">
-    <i class="fa fa-angle-double-up"></i>
-    <span>{{ i18n "footerToTheTop" }}</span>
-  </a>
-</div>
-<footer class="footer">
-  COPYRIGHT (C) <a href="https://blog.lulab.net">DONGGEUN,BANG (LUBANG).</a><br />
-  ALL RIGHTS RESERVED.
+<footer class="border bg-white border-bottom-0 border-left-0 border-right-0">
+  <div class="container pt-3 pb-3 pt-md-5 pb-md-5">
+    <div class="row">
+      <div class="col-md-6 col-sm-12 mb-0 mb-sm-3">
+        <ul class="nav justify-content-center justify-content-lg-start">
+          <li class="nav-item">
+            <a href="/" class="nav-link">
+              Home
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/about" class="nav-link">
+              About
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-6 col-sm-12 text-center text-md-right pt-2">
+        © <span>{{ now.Year }}</span>
+        <a href="{{.Site.BaseURL}}">Hobikoding</a>
+        <span class="d-none d-lg-inline">
+          | Made with
+          <img class="emoji" draggable="false" alt="❤️" height="15rem" width="15rem" src="/img/made-with.svg" />
+          using
+          <a href="https://gohugo.io" rel="noopener" target="_blank">Hugo</a>
+        </span>
+      </div>
+    </div>
+  </div>
 </footer>
+
 </body>
+
 </html>
