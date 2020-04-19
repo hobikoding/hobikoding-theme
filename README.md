@@ -1,60 +1,81 @@
-# Hugo Hello Programmer Theme
+# Hobikoding Theme
 
-Hello Programmer is a simple blog theme.
-
-![Hugo Hello Programmer Theme Screenshot](https://github.com/lubang/hugo-hello-programmer-theme/blob/master/images/screenshot.png)
+Hobikoding Theme is a simple hugo theme.
 
 ## Installation
 
 Inside the folder of your Hugo site run:
 
-    $ cd themes
-    $ git clone https://github.com/lubang/hugo-hello-programmer-theme
+```bash
+cd themes
+git clone https://github.com/saefullohmaslul/hobikoding-theme
+```
 
 For more information read the official [setup guide](//gohugo.io/overview/installing/) of Hugo.
-
 
 ## Config
 
 Modify your configuration:
 
-    $ vi config.toml
+```bash
+vi config.toml
+```
 
-    baseurl = "your-site-address"
-    title = "your-site-name"
+```toml
+baseURL = "https://www.hobikoding.com/"
+languageCode = "id-id"
+title = "Hobi Koding — Mari Ngoding Sambil Tidur"
+theme = "hobikoding-tema"
 
-    languageCode = "ko-KR"
-    DefaultContentLanguage = "kr"
-    theme = "hugo-hello-programmer-theme"
-    disqusShortname = "XXXX"
-    googleAnalytics = "UA-XXXXXXXX-X"
-    paginate = 7
+copyright = "Copyright (c) 2018, Hobikoding; all rights reserved."
+disqusShortname = "xxxxxx"
+enableRobotsTXT = true
+enableEmoji = true
+googleAnalytics = "UA-xxxxx"
 
-    [author]
-        name = "your-name"
-        email = "your-email"
+[Params]
+    SiteDescription = "Mari ngoding sambil tidur. Hobikode adalah blog yang akan membantumu belajar pemrograman dengan konten-konten berkualitas yang mudah dipahami"
+    DefaultKeywords = "ReactJS, JavaScript, HTML, CSS, Hugo, Programming"
 
-    [params]
-        description = "desribe-your-site"
+[permalinks]
+    reactjs = "/:slug/"
+    artikel = "/:slug/"
+    root = "/:slug/"
+    html = "/:slug/"
+    js = "/:slug/"
+
+[taxonomies]
+    topik = "topik"
+
+[Author]
+    nama = "Saefulloh Maslul"
+    web = "https://maslul.kopianget.net"
+
+[outputs]
+    home = ["HTML", "JSON", "RSS"]
+    artikel = ["HTML", "JSON", "RSS"]
+
+[menu]
+
+  [[menu.main]]
+    identifier = "artikel"
+    name = "This is the blog section"
+    title = "blog section"
+    url = "/artikel/"
+    weight = 130
+```
 
 Modify images for your site:
 
-    static/images/logo@.png (Left top logo image)
-    static/images/thumbnail.png (OpenGraph tag for preview)
+```bash
+static/images/logo@.png (Left top logo image)
+static/images/thumbnail.png (OpenGraph tag for preview)
+```
 
 ## Multilingual
 
-Configure your language. Now support these languages. (updated 2019-06-09)
-
-* kr (Korean, 한국어)
-* en (English, a little bit stupid sentence :( Plz. Pull-request for this theme)
-
-> You can pull request other languages or fix native sentence from exist language pack.
-
-## References
-
-Guide for Korean: https://blog.lulab.net/projects/2019-05-hugo-hello-programmer-theme-v2/
+Configure your language. Now support these languages.
 
 ## License
 
-This theme is released under the [MIT License](//github.com/lubang/hugo-hello-programmer-theme/blob/master/LICENSE.md).
+This theme is released under the [MIT License](//github.com/saefullohmaslul/hobikoding-theme/blob/master/LICENSE.md).

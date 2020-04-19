@@ -1,14 +1,37 @@
-# theme.toml template for a Hugo theme
+baseURL = "/"
+languageCode = "id-id"
+title = ""
+theme = ""
 
-name = "Hello Programmer"
-license = "MIT"
-licenselink = "https://github.com/lubang/hugo-hello-programmer-theme/blob/master/LICENSE.md"
-description = "Hugo Blog theme for a programmer"
-homepage = "https://github.com/lubang/hugo-hello-programmer-theme/"
-tags = ["blog", "hugo", "lulab", "donggeun", "bang", "lubang", "programmer"]
-features = ["blog", "simple", "programmer"]
-min_version = 0.15
+copyright = ""
+disqusShortname = ""
+enableRobotsTXT = true
+enableEmoji = true
+googleAnalytics = ""
 
-[author]
-  name = "LUBANG (DONGGEUN, BANG)"
-  homepage = "https://blog.lulab.net"
+[Params]
+    SiteDescription = ""
+    DefaultKeywords = ""
+
+[permalinks]
+    post = "/:post/"
+    
+[taxonomies]
+    topic = "topic"
+
+[Author]
+    nama = "Saefulloh Maslul"
+    web = "https://hobikoding.com"
+
+[outputs]
+    home = ["HTML", "JSON", "RSS"]
+    article = ["HTML", "JSON", "RSS"]
+
+[menu]
+
+  [[menu.main]]
+    identifier = "article"
+    name = "This is the blog section"
+    title = "blog section"
+    url = "/article/"
+    weight = 130
