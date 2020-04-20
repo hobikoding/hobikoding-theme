@@ -65,13 +65,6 @@ googleAnalytics = "UA-xxxxx"
     weight = 130
 ```
 
-Modify images for your site:
-
-```bash
-static/images/logo@.png (Left top logo image)
-static/images/thumbnail.png (OpenGraph tag for preview)
-```
-
 ## Multilingual
 
 Configure your language. Now support these languages.

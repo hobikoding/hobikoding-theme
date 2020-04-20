@@ -1,0 +1,22 @@
+<section class="card-footer p-md-4 bg-white">
+  <div id="share-page" class="share">
+    <a href="https://gitlab.com/saefullohmaslul/content/blob/master/{{ .Params.gitlab }}" title="Edit on Gitlab"
+      onclick="window.open(this.href, 'PCwindow', 'width=1000, height=800, menubar=no, toolbar=no, scrollbars=yes'); return false;">
+      <img class="float-left github-post" src="/img/icon-github.svg" alt="share-github" />
+    </a>
+
+    <div class="float-right mt-2">
+      <a class="ml-2" href="http://www.facebook.com/sharer.php?src=bm&u={{ .Permalink }}&t={{ .Title }}"
+        title="Share on Facebook"
+        onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;">
+        <img class="share-btn down" src="/img/icon-facebook.svg" alt="share-fb" />
+      </a>
+
+      <a class="ml-2" href="http://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title }}&tw_p=tweetbutton"
+        title="Share on Twitter"
+        onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;">
+        <img class="share-btn down" src="/img/icon-twitter.svg" alt="share-twitter" />
+      </a>
+    </div>
+  </div>
+</section>
