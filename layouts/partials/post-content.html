@@ -15,14 +15,14 @@
 <div>
   {{with .Params.topic}}
   {{range .}}
-  <span class="badge badge-success">
+  <span class="badge badge-primary">
     #
     <a href="{{$.Site.BaseURL}}/topic/{{.|urlize}}" class="text-white">{{.}}</a>
   </span>
   {{end}}
   {{end}}
 </div>
-<section class="post-content my-5">
+<section class="post-content mb-5 mt-3">
   {{if .Params.thumbnail}}
   <img src="{{with .Params.thumbnail}}{{.}}{{end}}" alt="{{with .Params.Title}}{{.}}{{end}}" class="mb-3 w-100">
   {{end}}
