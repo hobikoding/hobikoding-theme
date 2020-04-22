@@ -46,6 +46,13 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ "/css/styles.css" | relURL }}">
 
+  <script>
+    var m = document.createElement('meta');
+    m.name = 'theme-color';
+    m.content = '#204d7b';
+    document.head.appendChild(m);
+  </script>
+
   {{ if not .Site.BuildDrafts }}
   {{ if .Site.GoogleAnalytics }}
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
