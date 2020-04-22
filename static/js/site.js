@@ -5,9 +5,8 @@ $(document).scroll(function () {
 $(window).scroll(function () {
   var offsetTop = $("#share-page").offset().top;
   var scrollTop = $(window).scrollTop();
-  if (scrollTop > offsetTop - 500) {
-    $("#share-button").fadeOut(0);
-  }
+  var target = document.getElementById("share-button")
+  scrollTop > offsetTop - 700 ? target.style.opacity = 0 : target.style.opacity = 1
 });
 
 $(document).ready(function () {
