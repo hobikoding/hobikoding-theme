@@ -1,10 +1,10 @@
 <nav {{if eq .Permalink .Site.BaseURL}} class="navbar navbar-expand-lg navbar-dark sticky-top" {{else}}
   class="navbar navbar-expand-lg navbar-dark" {{end}}>
   <div class="container">
-    <a href="{{"/" | relURL}}" class="navbar-brand">
+    <a href="{{"/" | relURL}}" class="navbar-brand font-weight-bold d-lg-block">
       <img src="https://res.cloudinary.com/hobikoding/image/upload/v1552640822/blog-icon.svg" height="32"
-        class="d-inline-block align-top" alt="Logo">
-      <span class="nama-hobi">Hobikoding</span>
+        class="d-inline-block align-bottom" alt="Logo">
+      <span class="d-inline">Hobikoding</span>
     </a>
 
     <button id="btn-nav" class="navbar-toggler" type="button" data-toggle="collapse">
@@ -13,34 +13,36 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a href="{{"/" | relURL}}" class="nav-link">
-            Home
-            <span class="sr-only">(current)</span>
+            Node.js
           </a>
         </li>
 
         <li class="nav-item">
-          <a href="#" class="nav-link">Link</a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-            class="nav-link dropdown-toggle" id="navbarDropdown">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a href="#" class="dropdown-item">Action</a>
-            <a href="#" class="dropdown-item">Another Action</a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">Something else here</a>
-          </div>
+          <a href="#" class="nav-link">Golang</a>
         </li>
 
         <li class="nav-item">
-          <a href="#" class="nav-link disabled" tabindex="-1" aria-disabled="true">
-            Disabled
+          <a href="#" class="nav-link">React</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">Java</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span aria-hidden="true">More »</span>
           </a>
+        </li>
+
+        <li class="nav-item d-none d-lg-block disabled">
+          <span class="nav-link disabled">⋮</span>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">Ebook</a>
         </li>
       </ul>
 
