@@ -3,10 +3,12 @@ $(document).scroll(function () {
 });
 
 $(window).scroll(function () {
-  var offsetTop = $("#share-page").offset().top;
+  var offsetTop = $("#share-page").offset() && $("#share-page").offset().top;
   var scrollTop = $(window).scrollTop();
   var target = document.getElementById("share-button")
-  scrollTop > offsetTop - 700 ? target.style.opacity = 0 : target.style.opacity = 1
+  if (target) {
+    scrollTop > offsetTop - 700 ? target.style.opacity = 0 : target.style.opacity = 1
+  }
 });
 
 $(document).ready(function () {

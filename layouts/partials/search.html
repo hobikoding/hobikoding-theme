@@ -1,0 +1,216 @@
+<script>
+  let lunrIndex, searchResult, pagesIndex, query, page
+
+  const initLunr = async () => {
+    pagesIndex = await new Promise((resolve, reject) => {
+      $.getJSON("/index.json").done(result => {
+        resolve(result)
+      }).fail((jqxhr, textStatus, error) => {
+        reject(error)
+      })
+    })
+
+    lunrIndex = lunr(function () {
+      this.field("title", { boost: 10 })
+      this.field("tags", { boost: 5 })
+      this.field("summary")
+      this.ref("uri")
+
+      pagesIndex.forEach(function (page) {
+        this.add(page)
+      }, this)
+    })
+  }
+
+  const initUI = () => {
+    searchResult = $("#blog-listing-medium")
+    $(document).ready(function () {
+      searchResult.empty()
+
+      const pageURL = $(location).attr("href");
+      const url = pageURL.split("{{.Site.BaseURL}}search/?").join('')
+      const qs = url.split('+').join(' ').split('%20').join(' ').split('&')
+      const allQuery = new Object()
+
+      qs.map(q => {
+        const key = q.split('=')
+        allQuery[key[0]] = key[1]
+      })
+
+      query = allQuery.query
+      page = allQuery.page
+
+      if (!page) page = 1
+
+      $("#search-title").html(query.charAt(0).toUpperCase() + query.slice(1))
+      $("#search-description").html(query)
+
+      if (query && query.length < 2) return
+
+      const results = search(query)
+      renderResults(results)
+      renderPagination(results)
+    });
+  }
+
+  const search = (query) => {
+    return lunrIndex.search(query, {
+      wildcard: lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
+    }).map(function (result) {
+      return pagesIndex.filter(function (page) {
+        return page.uri === result.ref;
+      })[0];
+    });
+  }
+
+  const renderResults = (results) => {
+    $("#article-count").html(`terdapat <span class="badge badge-secondary">${results.length}</span> artikel untuk `)
+    const notAvailable = `<div class='col-md-6 col-lg-4 mb-4 d-flex'><h2>Hasil tidak ditemukan</h2></div>`
+    if (!results.length) return searchResult.append(notAvailable)
+
+    results.sort((a, b) => new Date(b.date) - new Date(a.date))
+
+    const limit = 6
+    const first = limit * (page - 1)
+    const end = (page - 1) * limit + limit
+    const isAvailable = results.slice(first, end)
+
+    if (isAvailable.length === 0) return searchResult.append(notAvailable)
+    return isAvailable.forEach(function (result) {
+      searchResult.append(`
+      <div class='col-md-6 col-lg-4 mb-4 d-flex'>
+        <div  class='card post-home'>
+          <img src='${result.banner}' class='card-img-top' alt='${result.title}' />
+          <div class='card-body'>
+            <h5 class='card-title'><a class='text-dark' href='${result.uri}'>${result.title}</a></h5>
+          </div>
+        </div>
+      </div>
+      `)
+    })
+  }
+
+  const renderPagination = (results) => {
+    const endPage = results.length % 6 === 0 ? parseInt(results.length / 6) : parseInt(results.length / 6) + 1
+
+    $("#pagination").append(`
+      <li class="page-item">
+        <a class="page-link" href="{{.Site.BaseURL}}search/?query=${query}&page=1" role="button" rel="first">
+          <span aria-hidden="true">«</span>
+          <span class="sr-only">First</span>
+        </a>
+      </li>
+    `)
+
+    if (page > 1) {
+      $("#pagination").append(`
+        <li class="page-item">
+          <a href="{{.Site.BaseURL}}search/?query=${query}&page=${page - 1}" class="page-link" rel="prev" aria-label="" Previous>
+            <span aria-hidden="true">‹</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+      `)
+    } else {
+      $("#pagination").append(`
+        <li class="page-item disabled">
+          <a href="#" class="page-link" aria-label="Previous">
+            <span aria-hidden="true">‹</span>
+          </a>
+        </li>
+      `)
+    }
+
+    $("#pagination").append(`
+      <li ${page === '1' ? `class="page-item active"` : `class="page-item"`}>
+        <a class="page-link" href="{{.Site.BaseURL}}search/?query=${query}&page=1">1</a>
+      </li>
+    `)
+
+    if (page < 4) {
+      if (parseInt(endPage) >= 2) {
+        $("#pagination").append(`
+          <li ${page === '2' ? `class="page-item active"` : `class="page-item"`}>
+            <a class="page-link" href="{{.Site.BaseURL}}search/?query=${query}&page=2">2</a>
+          </li>
+        `)
+      }
+
+      if (parseInt(endPage) >= 3) {
+        $("#pagination").append(`
+          <li ${page === '3' ? `class="page-item active"` : `class="page-item"`}>
+            <a class="page-link" href="{{.Site.BaseURL}}search/?query=${query}&page=3">3</a>
+          </li>
+        `)
+      }
+
+      $("#pagination").append(`
+        <li class="page-item disabled">
+          <a class="page-link" role="button" href="#">
+            <span aria-hidden="true">…</span>
+            <span class="sr-only">More</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="{{.Site.BaseURL}}search/?query=${query}&page=${endPage}">
+            ${endPage}
+          </a>
+        </li>
+      `)
+    } else {
+      /**
+       * paginator > 4 is here!!!
+       */
+    }
+
+    if (page < endPage) {
+      $("#pagination").append(`
+        <li class="page-item">
+          <a class="page-link" href="{{.Site.BaseURL}}search?query=${query}&page=${+page + 1}" rel="next" aria-label="Next">
+            <span aria-hidden="true">›</span>
+          </a>
+        </li>
+      `)
+    } else {
+      $("#pagination").append(`
+        <li class="page-item disabled">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">›</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      `)
+    }
+
+    $("#pagination").append(`
+      <li class="page-item">
+        <a class="page-link" role="button" href="{{.Site.BaseURL}}search?query=${query}&page=${endPage}" rel="last">
+          <span aria-hidden="true">»</span>
+          <span class="sr-only">Last</span>
+        </a>
+      </li>
+    `)
+  }
+
+
+  initLunr()
+
+  $(document).ready(function () {
+    initUI()
+  });
+</script>
+
+<div class="container content">
+  <div class="row mt-5">
+    <div id="blog-listing-medium" style="display:contents"></div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="home-pagination">
+      <nav aria-label="Page Navigation">
+        <ul id="pagination" class="pagination"></ul>
+      </nav>
+    </div>
+  </div>
+</div>

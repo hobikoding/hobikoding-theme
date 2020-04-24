@@ -5,7 +5,7 @@
         {{$base := .Permalink}}
         {{range where .Site.Pages "Type" "topic"}}
         {{if eq $base .Permalink}}
-        <h1 id="description-title" class="">Topik: {{humanize .Title}}</h1>
+        <h1 id="description-title">Topik: {{humanize .Title}}</h1>
         {{end}}
         {{end}}
         <p>
