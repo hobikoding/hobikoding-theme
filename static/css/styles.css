@@ -56,6 +56,9 @@ h1.card-title {
 pre{background-color: #fff!important;color: #212529!important;}
 .hljs{padding: 1.5em!important;border: none;float: left;min-width: 100%;background: #2a4e650f!important;}
 .hljs-comment, .hljs-quote {color: #818a90!important;}
+.language-title{background: #f3f5f6;display: block;padding: 1.5em;color: #a4a8ab;border-bottom: 1px solid #c9c9ca;}
+.pre-title{margin-bottom: 25px;margin-top: 25px;}
+.pre-title pre{margin-bottom: 0;margin-top: 0;}
 
 /* share */
 #share-button{display: none;}
@@ -79,6 +82,4 @@ blockquote{padding: 10px 15px;border-left: 7px solid #556f7f;background: #eff9ff
 .post-content table th{text-align: center;}
 .post-content table tr:nth-child(2n){background-color: #f6f8fa;}
 
-.logo {
-  font-weight: 600;
-}
+.logo {font-weight: 600;}
