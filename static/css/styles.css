@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 .post-content {font-size: 1.0rem;line-height: 1.5;color: #383838;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: normal;}
 .post-content h1, 
@@ -13,9 +12,7 @@
 
 @media (min-width: 992px){
   /* pagination */
-  .justify-content-center {
-    justify-content: flex-start!important;
-  }
+  .justify-content-center {-webkit-box-pack: start!important;justify-content: flex-start!important;}
 
   /* share */
   .share-btn{display: block;}
@@ -56,17 +53,17 @@ h1.card-title {
 pre{background-color: #fff!important;color: #212529!important;}
 .hljs{padding: 1.5em!important;border: none;float: left;min-width: 100%;background: #2a4e650f!important;}
 .hljs-comment, .hljs-quote {color: #818a90!important;}
-.language-title{background: #f3f5f6;display: block;padding: 1.5em;color: #a4a8ab;border-bottom: 1px solid #c9c9ca;}
+.language-title{background: #2a4e650f!important;;display: block;padding: 1.5em;color: #a4a8ab!important;border-bottom: 1px solid #c9c9ca;}
 .pre-title{margin-bottom: 25px;margin-top: 25px;}
 .pre-title pre{margin-bottom: 0;margin-top: 0;}
 
 /* share */
 #share-button{display: none;}
 .share a {display: inline-block;}
-.share-btn{opacity: 0.7;transition: all 0.3s;height: 23px;max-width: none;}
+.share-btn{opacity: 0.7;-webkit-transition: all 0.3s;transition: all 0.3s;height: 23px;max-width: none;}
 .share-btn.down{display: block!important;}
 .share-btn:hover{opacity: 1.0;cursor: pointer;}
-.github-post{opacity: 0.7;height: 45px;transition: all 0.3s;}
+.github-post{opacity: 0.7;height: 45px;-webkit-transition: all 0.3s;transition: all 0.3s;}
 .github-post:hover{opacity: 1;}
 
 /* blockquote */
