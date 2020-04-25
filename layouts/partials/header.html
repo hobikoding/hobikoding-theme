@@ -18,10 +18,10 @@
     content="{{ if .IsHome }}{{ $.Site.Params.description }}{{ else }}{{ $.Site.Params.description}} '{{ .Title }}'{{ i18n "menuOgDescPostfix" }}{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:site_name" content="{{ .Site.Title }}">
-  {{ if .Params.cover }}
-  <meta property="og:image" content="{{ .Params.cover | absURL }}">
+  {{ if .Params.thumbnail }}
+  <meta property="og:image" content="{{ .Params.thumbnail | absURL }}">
   {{ else }}
-  <!-- <meta property="og:image" content="{{ "images/thumbnail.png" | absURL }}"> -->
+  <meta property="og:image" content="{{ "img/home-subscription.svg" | absURL }}">
   {{ end }}
   {{ range .Params.tags }}
   <meta property="og:tags" content="{{ . }}">
