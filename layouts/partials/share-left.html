@@ -1,29 +1,44 @@
-<aside class="position-fixed" id="share-button">
-  <div class="col-sm-12 col-lg-1 position-sticky ml-5 pl-5 mt-6">
-    <ul class="list-unstyled">
-      <li class="media">
-        <a href="http://www.facebook.com/sharer.php?src=bm&u={{ .Permalink }}&t={{ .Title }}"
-          onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"
-          title="Share on Facebook">
-          <span><img class="share-btn" src="/img/icon-facebook.svg" alt="share-fb" /></span>
-        </a>
-      </li>
+<aside class="position-fixed" id="share-button"></aside>
 
-      <li class="media my-4">
-        <a href="http://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title }}&tw_p=tweetbutton"
-          onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"
-          title="Share on Twitter">
-          <span><img class="share-btn" src="/img/icon-twitter.svg" alt="share-twitter" /></span>
-        </a>
-      </li>
+<script>
+  $(document).scroll(function () {
+    $('#share-button').toggle($(this).scrollTop() > 300);
+  })
 
-      <li class="media my-4">
-        <a href="https://github.com/saefullohmaslul/saefullohmaslul.github.io/blob/blog/content/{{.Params.github }}"
-          onclick="window.open(this.href, 'PCwindow', 'width=1000, height=800, menubar=no, toolbar=no, scrollbars=yes'); return false;"
-          title="Edit on Gitlab">
-          <span><img class="share-btn" src="/img/icon-github.svg" alt="share-github" /></span>
-        </a>
-      </li>
-    </ul>
-  </div>
-</aside>
+  $(window).scroll(function () {
+    const offsetTop = $("#share-page").offset() && $("#share-page").offset().top;
+    const scrollTop = $(window).scrollTop();
+    const target = $("#share-button")
+    if (target) {
+      scrollTop > offsetTop - 700 ? target.empty() : target.html(`
+      <div class="col-sm-12 col-lg-1 position-sticky ml-5 pl-5 mt-6">
+        <ul class="list-unstyled">
+          <li class="media">
+            <a href="http://www.facebook.com/sharer.php?u={{ .Permalink }}&t={{ .Title }}"
+              onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"
+              title="Share on Facebook">
+              <span><img class="share-btn" src="/img/icon-facebook.svg" alt="share-fb" /></span>
+            </a>
+          </li>
+
+          <li class="media my-4">
+            <a href="http://twitter.com/intent/tweet?url={{.Permalink}}&text={{ .Title }}&tw_p=tweetbutton"
+              onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"
+              title="Share on Twitter">
+              <span><img class="share-btn" src="/img/icon-twitter.svg" alt="share-twitter" /></span>
+            </a>
+          </li>
+
+          <li class="media my-4">
+            <a href="https://github.com/saefullohmaslul/saefullohmaslul.github.io/blob/blog/content/{{.Params.github }}"
+              onclick="window.open(this.href, 'PCwindow', 'width=1000, height=800, menubar=no, toolbar=no, scrollbars=yes'); return false;"
+              title="Edit on Gitlab">
+              <span><img class="share-btn" src="/img/icon-github.svg" alt="share-github" /></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    `)
+    }
+  })
+</script>
