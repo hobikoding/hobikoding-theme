@@ -2,13 +2,8 @@
   let query, page
 
   const initLunr = async () => {
-    const pageIndex = await new Promise((resolve, reject) => {
-      $.getJSON("/index.json").done(result => {
-        resolve(result)
-      }).fail((jqxhr, textStatus, error) => {
-        reject(error)
-      })
-    })
+    const res = await fetch('/index.json')
+    const pageIndex = await res.json()
 
     const lunrIndex = lunr(function () {
       this.field("title", { boost: 10 })
