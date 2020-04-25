@@ -1,8 +1,8 @@
 <script>
-  let lunrIndex, searchResult, pagesIndex, query, page
+  let query, page
 
   const initLunr = async () => {
-    pagesIndex = await new Promise((resolve, reject) => {
+    const pageIndex = await new Promise((resolve, reject) => {
       $.getJSON("/index.json").done(result => {
         resolve(result)
       }).fail((jqxhr, textStatus, error) => {
@@ -10,29 +10,30 @@
       })
     })
 
-    lunrIndex = lunr(function () {
+    const lunrIndex = lunr(function () {
       this.field("title", { boost: 10 })
       this.field("tags", { boost: 5 })
+      this.field("keywords")
       this.field("summary")
+      this.field("description")
       this.ref("uri")
 
-      pagesIndex.map(page => {
+      pageIndex.map(page => {
         this.add(page)
       }, this)
     })
+
+    return { lunrIndex, pageIndex }
   }
 
-  const initUI = () => {
-    searchResult = $("#blog-listing-medium")
+  const initUI = (lunrIndex, pageIndex) => {
+    let searchResult = $("#blog-listing-medium")
     $(document).ready(function () {
       searchResult.empty()
 
       const pageURL = $(location).attr("href")
-      console.log(pageURL)
       const url = pageURL.split("{{.Site.BaseURL}}search/?").join('')
-      console.log(url)
       const qs = url.split('+').join(' ').split('%20').join(' ').split('&')
-      console.log(qs)
       const allQuery = new Object()
 
       qs.map(q => {
@@ -50,23 +51,23 @@
 
       if (query && query.length < 2) return
 
-      const results = search(query)
-      renderResults(results)
+      const results = search(query, lunrIndex, pageIndex)
+      renderResults(results, searchResult)
       renderPagination(results)
     });
   }
 
-  const search = (query) => {
+  const search = (query, lunrIndex, pageIndex) => {
     return lunrIndex.search(query, {
       wildcard: lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
     }).map(function (result) {
-      return pagesIndex.filter(function (page) {
+      return pageIndex.filter(function (page) {
         return page.uri === result.ref;
       })[0];
     });
   }
 
-  const renderResults = (results) => {
+  const renderResults = (results, searchResult) => {
     $("#article-count").html(`terdapat <span class="badge badge-secondary">${results.length}</span> artikel untuk `)
     const notAvailable = `<div class='col-md-6 col-lg-4 mb-4 d-flex'><h2>Hasil tidak ditemukan</h2></div>`
     if (!results.length) return searchResult.append(notAvailable)
@@ -134,7 +135,7 @@
       if (parseInt(endPage) >= 2) {
         $("#pagination").append(`
           <li ${page === '2' ? `class="page-item active"` : `class="page-item"`}>
-            <a class="page-link" href="{{.Site.BaseURL}}search/?query=${query}&page=2">2</a>
+            <a class="page-link" href='{{add .Site.BaseURL "search/?query=${query}&page=2"}}'>2</a>
           </li>
         `)
       }
@@ -142,7 +143,7 @@
       if (parseInt(endPage) >= 3) {
         $("#pagination").append(`
           <li ${page === '3' ? `class="page-item active"` : `class="page-item"`}>
-            <a class="page-link" href="{{.Site.BaseURL}}search/?query=${query}&page=3">3</a>
+            <a class="page-link" href='{{add .Site.BaseURL "search/?query=${query}&page=3"}}'>3</a>
           </li>
         `)
       }
@@ -155,7 +156,7 @@
           </a>
         </li>
         <li class="page-item">
-          <a class="page-link" href="{{.Site.BaseURL}}search/?query=${query}&page=${endPage}">
+          <a class="page-link" href='{{add .Site.BaseURL "search/?query=${query}&page=${endPage}"}}'>
             ${endPage}
           </a>
         </li>
@@ -167,9 +168,10 @@
     }
 
     if (page < endPage) {
+      const nextPage = +page + 1
       $("#pagination").append(`
         <li class="page-item">
-          <a class="page-link" href="{{.Site.BaseURL}}search?query=${query}&page=${+page + 1}" rel="next" aria-label="Next">
+          <a class="page-link" href='{{add .Site.BaseURL "search?query=${query}&page=${nextPage}"}}' rel="next" aria-label="Next">
             <span aria-hidden="true">›</span>
           </a>
         </li>
@@ -187,7 +189,7 @@
 
     $("#pagination").append(`
       <li class="page-item">
-        <a class="page-link" role="button" href="{{.Site.BaseURL}}search?query=${query}&page=${endPage}" rel="last">
+        <a class="page-link" role="button" href='{{add .Site.BaseURL "search?query=${query}&page=${endPage}"}}' rel="last">
           <span aria-hidden="true">»</span>
           <span class="sr-only">Last</span>
         </a>
@@ -195,11 +197,13 @@
     `)
   }
 
-
-  initLunr()
-
-  $(document).ready(function () {
-    initUI()
+  $(document).ready(async () => {
+    try {
+      const { lunrIndex, pageIndex } = await initLunr()
+      initUI(lunrIndex, pageIndex)
+    } catch (error) {
+      $("#blog-listing-medium").html(`<div class='col-md-6 col-lg-4 mb-4 d-flex'><h2>Gagal mengambil index</h2></div>`)
+    }
   });
 </script>
 
