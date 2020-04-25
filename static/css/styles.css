@@ -51,6 +51,7 @@ h1.card-title {
 
 /* highlight */
 pre{background-color: #fff!important;color: #212529!important;}
+span.pre-quote{background: #d9e0e4;display: inline-block;margin-right: -1.5em;margin-left: -1.5em;padding: 0 1.2em;width: -webkit-fill-available;border-left: 0.3em #70b9e2 solid;}
 .hljs{padding: 1.5em!important;border: none;float: left;min-width: 100%;background: #2a4e650f!important;}
 .hljs-comment, .hljs-quote {color: #818a90!important;}
 .language-title{background: #2a4e650f!important;;display: block;padding: 1.5em;color: #a4a8ab!important;border-bottom: 1px solid #c9c9ca;}
@@ -67,7 +68,7 @@ pre{background-color: #fff!important;color: #212529!important;}
 .github-post:hover{opacity: 1;}
 
 /* blockquote */
-blockquote{padding: 10px 15px;border-left: 7px solid #556f7f;background: #eff9ff;margin-top: 1rem;margin-bottom: 1.5rem;}
+blockquote{padding: 10px 15px;border-left: 0.35em solid #556f7f;background: #eff9ff;margin-top: 1rem;margin-bottom: 1.5rem;}
 
 /* block code */
 .block-code{background: #d9e0e4;display: inline-block;margin-right: -1.5em;margin-left: -1.5em;padding: 0 1.5em;width: -webkit-fill-available;width: -moz-available;width: fill-available;}
