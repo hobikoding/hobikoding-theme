@@ -4,7 +4,7 @@
 
 <div class="container content">
   <div class="row mt-5">
-    {{ range where .Paginator.Pages "Type" "ne" "page"}}
+    {{ range where .Paginator.Pages "Type" "eq" "posts"}}
     {{ .Render "summary"}}
     {{ end }}
   </div>

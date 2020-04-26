@@ -9,12 +9,3 @@ $(document).ready(function () {
     }
   })
 })
-
-$("code").find("span").each(function () {
-  if ($(this).css("color") === "rgb(166, 226, 46)") {
-    $(this).css("color", "")
-  }
-  if ($(this).css("background-color")) {
-    $(this).css("background-color", "")
-  }
-})

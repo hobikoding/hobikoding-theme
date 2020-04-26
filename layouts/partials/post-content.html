@@ -30,4 +30,14 @@
   {{end}}
 
   {{.Content}}
+  {{ $jsFile := .Title | anchorize }}
+  {{ $pathWithoutExtension := (printf "%s%s" "js/posts/" $jsFile) }}
+  {{ $pathJS := (printf "%s%s" $pathWithoutExtension ".js") }}
+  {{ $pathJSX := (printf "%s%s" $pathWithoutExtension ".jsx") }}
+
+  {{ if (fileExists (printf "%s%s" "static/" $pathJS)) }}
+  <script type="text/javascript" src="{{$pathJS | absURL}}"></script>
+  {{ else if (fileExists (printf "%s%s" "static/" $pathJSX)) }}
+  <script type="text/babel" src="{{$pathJSX | absURL}}"></script>
+  {{ end }}
 </section>
