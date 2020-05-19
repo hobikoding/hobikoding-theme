@@ -94,3 +94,5 @@ blockquote{padding: 10px 15px;border-left: 0.35em solid #556f7f;background: #eff
 .code-play .run {right: 29px;margin-right: 1px}
 .code-play button:hover {background: #b4b3b3;}
 .code-play img {margin: 7px 1px;box-shadow: none;}
+
+body p img{max-width: 100%;}
