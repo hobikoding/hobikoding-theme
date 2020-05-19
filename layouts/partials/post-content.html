@@ -16,7 +16,7 @@
   {{with .Params.topic}}
   {{range .}}
   <span class="badge badge-primary">
-    #<a href="{{$.Site.BaseURL}}/topic/{{.|urlize}}/" class="text-white">{{humanize .}}</a>
+    #<a href="{{$.Site.BaseURL}}/topic/{{.|urlize}}/" class="text-white">{{.}}</a>
   </span>
   {{end}}
   {{end}}
