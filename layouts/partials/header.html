@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ .Title }} {{ if ne .Title .Site.Title }} | {{ .Site.Title }}{{ end }}</title>
   <meta name="description"
-    content="{{ if .IsHome }}{{ $.Site.Params.description }}{{ else }}{{ $.Site.Params.description}} '{{ .Title }}'{{ i18n "menuOgDescPostfix" }}{{ end }}">
+    content="{{ if .IsHome }}{{ $.Site.Params.description }}{{ else }}{{ $.Site.Params.description}} | {{ .Title }}{{ i18n "menuOgDescPostfix" }}{{ end }}">
   <meta property="og:title" content="{{ .Title }}">
   {{ if .IsPage }}
   <meta property="og:type" content="article">
@@ -15,7 +15,7 @@
   <meta property="og:type" content="website">
   {{ end }}
   <meta property="og:description"
-    content="{{ if .IsHome }}{{ $.Site.Params.description }}{{ else }}{{ $.Site.Params.description}} '{{ .Title }}'{{ i18n "menuOgDescPostfix" }}{{ end }}">
+    content="{{ if .IsHome }}{{ $.Site.Params.description }}{{ else }}{{ $.Site.Params.description}} | {{ .Title }}{{ i18n "menuOgDescPostfix" }}{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:site_name" content="{{ .Site.Title }}">
   {{ if .Params.thumbnail }}
