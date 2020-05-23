@@ -1,6 +1,6 @@
 {{if isset .Params "author"}}
 {{$author := index .Site.Data.authors .Params.author}}
-<div id="share-page" class="card p-4 mb-5 mt-3">
+<div id="share-page" class="card border-0 p-4 mb-5 author-contanier">
   <div class="media">
     <img class="mr-3 rounded border lazyload lazyloaded" src="{{$author.image}}" data-src="{{$author.image}}"
       width="128" height="128" alt="Author avatar">
