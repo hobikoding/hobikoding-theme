@@ -6,12 +6,14 @@
     <div class="col-sm-12 col-lg-8 post-outer">
       <article id="post-card" class="card border-0">
         <div class="card-body pb-0">
-
           {{ partial "post-content.html" . }}
-
-          {{ partial "share-bottom.html" . }}
+        </div>
+        <div class="card-footer p-md-4 bg-white">
+          <div class="sharethis-inline-share-buttons"></div>
         </div>
       </article>
+
+      {{ partial "author.html" . }}
 
       <div class="card px-4 pb-4 border-0">
         <div class="post-comment">
