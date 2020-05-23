@@ -4,7 +4,7 @@
     {{if isset .Params "author"}}
     {{$author := index .Site.Data.authors .Params.author}}
     <img src="{{ $author.image }}" alt="author" class="rounded-circle mr-1" width="32" height="32" alt="author" />
-    <a class="align-middle text-dark" href="{{ $author.social.website }}" target="_blank">{{ $author.name }}</a>
+    <a class="align-middle text-dark" href="{{ $author.social.linkedin }}" target="_blank">{{ $author.name }}</a>
     {{else}}
     Unknown
     {{end}}
