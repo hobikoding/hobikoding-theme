@@ -1,0 +1,15 @@
+{{ partial "header.html" . }}
+{{ partial "navigation-series.html" . }}
+{{ partial "description-series.html" . }}
+
+<div class="container">
+  <div class="row my-5">
+    <div class="series col-12">
+      <div class="post-content p-2">
+        {{ .Content }}
+      </div>
+    </div>
+  </div>
+</div>
+{{ partial "subscription.html" . }}
+{{ partial "footer.html" . }}
