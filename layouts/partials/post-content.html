@@ -29,11 +29,11 @@
   <p class="text-center text-secondary mb-4"><small>Source: {{.Params.source}}</small></p>
   {{end}}
   {{.Content}}
-  <section class="mb-3 mt-5">
+  <section class="mb-3 mt-4">
     {{with .Params.topic}}
     {{range .}}
-    <button class="btn border-0" style="background-color: rgba(0, 0, 0, 0.05);">
-      <a href="{{$.Site.BaseURL}}topic/{{.|urlize}}/" style="color: rgba(0, 0, 0, 0.54);">{{.}}</a>
+    <button class="btn border-0 px-2 pb-1 pt-0" style="background-color: rgba(0, 0, 0, 0.05);">
+      <a href="{{$.Site.BaseURL}}topic/{{.|urlize}}/" style="color: rgba(0, 0, 0, 0.54); font-size: 80%;">{{.}}</a>
     </button>
     {{end}}
     {{end}}
