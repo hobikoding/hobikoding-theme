@@ -19,13 +19,18 @@
           <li class="nav-item">
             <a href="/series/nodejs" {{if eq .Params.series "nodejs"}} class="active nav-link" {{else}} class="nav-link"
               {{end}}>
-              Node.js
+              Nodejs
             </a>
           </li>
 
           <li class="nav-item">
             <a href="/series/golang" {{if eq .Params.series "golang"}} class="active nav-link" {{else}} class="nav-link"
               {{end}}>Golang</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/series/deno" {{if eq .Params.series "deno"}} class="active nav-link" {{else}} class="nav-link"
+              {{end}}>Deno</a>
           </li>
 
           <li class="nav-item">
@@ -39,11 +44,16 @@
           </li>
 
           <li class="nav-item">
+            <a href="/series/swift" {{if eq .Params.series "swift"}} class="active nav-link" {{else}} class="nav-link"
+              {{end}}>Swift</a>
+          </li>
+
+          <li class="nav-item">
             <a href="/series/dart" {{if eq .Params.series "dart"}} class="active nav-link" {{else}} class="nav-link"
               {{end}}>Dart</a>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <span aria-hidden="true">More »</span>
             </a>
@@ -55,7 +65,7 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">Ebook</a>
-          </li>
+          </li> -->
         </ul>
 
         {{if eq .Params.type "series"}}
