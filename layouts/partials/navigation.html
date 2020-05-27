@@ -6,59 +6,74 @@
       <span class="d-inline">Hobikoding</span>
     </a>
 
-    <button id="btn-nav" class="navbar-toggler" type="button" data-toggle="collapse">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    {{if eq .Params.type "series"}}
+    <div class="float-right">
+      {{else}}
+      <button id="btn-nav" class="navbar-toggler" type="button" data-toggle="collapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {{end}}
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a href="/series/nodejs" {{if eq .Params.series "nodejs"}} class="active nav-link" {{else}} class="nav-link"
-            {{end}}>
-            Node.js
-          </a>
-        </li>
+          <li class="nav-item">
+            <a href="/series/nodejs" {{if eq .Params.series "nodejs"}} class="active nav-link" {{else}} class="nav-link"
+              {{end}}>
+              Node.js
+            </a>
+          </li>
 
-        <li class="nav-item">
-          <a href="/series/golang" {{if eq .Params.series "golang"}} class="active nav-link" {{else}} class="nav-link"
-            {{end}}>Golang</a>
-        </li>
+          <li class="nav-item">
+            <a href="/series/golang" {{if eq .Params.series "golang"}} class="active nav-link" {{else}} class="nav-link"
+              {{end}}>Golang</a>
+          </li>
 
-        <li class="nav-item">
-          <a href="/series/react" {{if eq .Params.series "react"}} class="active nav-link" {{else}} class="nav-link"
-            {{end}}>React</a>
-        </li>
+          <li class="nav-item">
+            <a href="/series/react" {{if eq .Params.series "react"}} class="active nav-link" {{else}} class="nav-link"
+              {{end}}>React</a>
+          </li>
 
-        <li class="nav-item">
-          <a href="/series/java" {{if eq .Params.series "java"}} class="active nav-link" {{else}} class="nav-link"
-            {{end}}>Java</a>
-        </li>
+          <li class="nav-item">
+            <a href="/series/kotlin" {{if eq .Params.series "kotlin"}} class="active nav-link" {{else}} class="nav-link"
+              {{end}}>Kotlin</a>
+          </li>
 
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <span aria-hidden="true">More »</span>
-          </a>
-        </li>
+          <li class="nav-item">
+            <a href="/series/dart" {{if eq .Params.series "dart"}} class="active nav-link" {{else}} class="nav-link"
+              {{end}}>Dart</a>
+          </li>
 
-        <li class="nav-item d-none d-lg-block disabled">
-          <span class="nav-link disabled">⋮</span>
-        </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span aria-hidden="true">More »</span>
+            </a>
+          </li>
 
-        <li class="nav-item">
-          <a href="#" class="nav-link">Ebook</a>
-        </li>
-      </ul>
+          <li class="nav-item d-none d-lg-block disabled">
+            <span class="nav-link disabled">⋮</span>
+          </li>
 
-      <form action="/search/" class="form-inline my-2 my-lg-0">
-        <div class="input-group">
-          <input type="search" name="query" class="form-control" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-primary my-sm-0" type="submit">
-              <img src="/img/icon-search.svg" class="pb-1" height="20px" alt="icon-cari">
-            </button>
-          </div>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Ebook</a>
+          </li>
+        </ul>
+
+        {{if eq .Params.type "series"}}
+        <div class="float-right">
         </div>
-      </form>
+        {{else}}
+        <form action="/search/" class="form-inline my-2 my-lg-0">
+          <div class="input-group">
+            <input type="search" name="query" class="form-control" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+              <button class="btn btn-primary my-sm-0" type="submit">
+                <img src="/img/icon-search.svg" class="pb-1" height="20px" alt="icon-cari">
+              </button>
+            </div>
+          </div>
+        </form>
+        {{end}}
+      </div>
     </div>
   </div>
 </nav>
