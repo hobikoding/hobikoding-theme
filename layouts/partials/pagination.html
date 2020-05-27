@@ -54,12 +54,12 @@
           </li>
 
           <li class="page-item">
-            <a class="page-link" href="{{.Permalink}}page/{{.Paginator.TotalPages}}">
-              {{.Paginator.TotalPages}}
+            <a class="page-link" href="{{.Permalink}}page/{{sub .Paginator.TotalPages 2}}">
+              {{sub .Paginator.TotalPages 2}}
             </a>
           </li>
 
-          {{ else if or (eq .Paginator.PageNumber (sub .Paginator.TotalPages 2)) (eq .Paginator.PageNumber (sub .Paginator.TotalPages 1)) (eq .Paginator.PageNumber .Paginator.TotalPages)}}
+          {{ else if or (eq .Paginator.PageNumber (sub .Paginator.TotalPages 4)) (eq .Paginator.PageNumber (sub .Paginator.TotalPages 3)) (eq .Paginator.PageNumber (sub .Paginator.TotalPages 2))}}
 
           <li class="page-item">
             <a class="page-link" href="{{.Permalink}}page/1">1</a>
@@ -72,24 +72,24 @@
             </a>
           </li>
 
-          <li {{ if eq .Paginator.PageNumber (sub .Paginator.TotalPages 2) }} class="page-item active"
+          <li {{ if eq .Paginator.PageNumber (sub .Paginator.TotalPages 4) }} class="page-item active"
             {{else}}class="page-item" {{ end }}>
+            <a class="page-link" href="{{.Permalink}}page/{{sub .Paginator.TotalPages 4}}">
+              {{sub .Paginator.TotalPages 4}}
+            </a>
+          </li>
+
+          <li {{ if eq .Paginator.PageNumber (sub .Paginator.TotalPages 3) }}class="page-item active"
+            {{else}}class="page-item" {{ end }}>
+            <a class="page-link" href="{{.Permalink}}page/{{sub .Paginator.TotalPages 3}}">
+              {{sub .Paginator.TotalPages 3}}
+            </a>
+          </li>
+
+          <li {{ if eq .Paginator.PageNumber (sub .Paginator.TotalPages 2) }} class="page-item active" {{else}}
+            class="page-item" {{ end }}>
             <a class="page-link" href="{{.Permalink}}page/{{sub .Paginator.TotalPages 2}}">
               {{sub .Paginator.TotalPages 2}}
-            </a>
-          </li>
-
-          <li {{ if eq .Paginator.PageNumber (sub .Paginator.TotalPages 1) }}class="page-item active"
-            {{else}}class="page-item" {{ end }}>
-            <a class="page-link" href="{{.Permalink}}page/{{sub .Paginator.TotalPages 1}}">
-              {{sub .Paginator.TotalPages 1}}
-            </a>
-          </li>
-
-          <li {{ if eq .Paginator.PageNumber .Paginator.TotalPages }} class="page-item active" {{else}}
-            class="page-item" {{ end }}>
-            <a class="page-link" href="{{.Permalink}}page/{{.Paginator.TotalPages}}">
-              {{.Paginator.TotalPages}}
             </a>
           </li>
 
@@ -131,7 +131,7 @@
           <!-- 
             check pagination has next
            -->
-          {{ if .Paginator.HasNext }}
+          {{ if and .Paginator.HasNext (lt .Paginator.PageNumber (sub .Paginator.TotalPages 2)) }}
           <li class="page-item">
             <a class="page-link" href="{{ .Paginator.Next.URL }}" rel="next" aria-label="Next">
               <span aria-hidden="true">›</span>
@@ -150,7 +150,7 @@
             add last pagination
            -->
           <li class="page-item">
-            <a class="page-link" role="button" href="{{ .Paginator.Last.URL }}" rel="last">
+            <a class="page-link" role="button" href="{{.Permalink}}page/{{sub .Paginator.PageSize 2}}" rel="last">
               <span aria-hidden="true">»</span>
               <span class="sr-only">Last</span>
             </a>
